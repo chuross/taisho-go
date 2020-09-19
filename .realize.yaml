@@ -8,10 +8,10 @@ schema:
     commands:
       build:
         status: true
-        method: go build -o app ./internal/main.go
+        method: go build -o taisho ./cmd/taisho/main.go
       run:
         status: true
-        method: ./app
+        method: ./taisho
     watcher:
       extensions:
         - go
