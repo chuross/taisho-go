@@ -4,8 +4,8 @@ services:
     build:
       context: ./build/app
       args:
-        NAME_SPACE: github.com/chuross
+        NAME_SPACE: github.com/chuross/taisho
     ports:
       - "127.0.0.1:8080:8080"
     volumes:
-      - ../:/go/src/github.com/chuross
+      - ./:/go/src/github.com/chuross/taisho
