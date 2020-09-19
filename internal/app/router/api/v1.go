@@ -1,13 +1,13 @@
-package router
+package router_api
 
 import (
-	apiv1 "github.com/chuross/taisho/internal/app/handler/api/v1"
+	"github.com/chuross/taisho/internal/app/handler/api_v1"
 	"github.com/gin-gonic/gin"
 )
 
-func SetUpAPIV1(r *gin.RouterGroup) {
+func SetUpV1API(r *gin.RouterGroup) {
 	v1 := r.Group("v1")
 	{
-		v1.POST("line/callback", apiv1.PostLineCallback)
+		v1.POST("line/callback", api_v1.PostLineCallback)
 	}
 }
