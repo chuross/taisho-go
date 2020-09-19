@@ -3,20 +3,21 @@ settings:
     force: false
     interval: 0s
 schema:
-- name: taisho
-  path: .
-  commands:
-    build:
-      status: true
-      method: go build -o app ./internal/main.go
-    run:
-      status: true
-  watcher:
-    extensions:
-    - go
-    paths:
-    - /
-    ignored_paths:
-    - .git
-    - .realize
-    - vendor
+  - name: taisho
+    path: .
+    commands:
+      build:
+        status: true
+        method: go build -o app ./internal/main.go
+      run:
+        status: true
+        method: ./app
+    watcher:
+      extensions:
+        - go
+      paths:
+        - /
+      ignored_paths:
+        - .git
+        - .realize
+        - vendor
