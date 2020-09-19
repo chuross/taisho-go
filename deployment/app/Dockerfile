@@ -10,7 +10,7 @@ ARG PROJECT_DIR="/go/src/${NAME_SPACE}"
 RUN mkdir -p ${PROJECT_DIR}
 WORKDIR ${PROJECT_DIR}
 
-COPY ./ .
+COPY ./ ${PROJECT_DIR}
 
 RUN go build -o taisho ./cmd/taisho/main.go
 
