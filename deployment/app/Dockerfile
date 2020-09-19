@@ -11,6 +11,6 @@ WORKDIR ${PROJECT_DIR}
 
 COPY ./ .
 
-RUN go build -o taisho ../../cmd/taisho/main.go
+RUN go build -o taisho ./cmd/taisho/main.go
 
 CMD ["taisho"]
