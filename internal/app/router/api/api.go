@@ -5,5 +5,6 @@ import (
 )
 
 func SetUpAPI(r *gin.Engine) {
-	SetUpAPIV1(r)
+	api := r.Group("api")
+	SetUpAPIV1(api)
 }

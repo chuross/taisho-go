@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetUpAPIV1(r *gin.Engine) {
+func SetUpAPIV1(r *gin.RouterGroup) {
 	v1 := r.Group("v1")
 	{
 		v1.POST("line/callback", apiv1.PostLineCallback)

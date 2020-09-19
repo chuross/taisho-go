@@ -1,4 +1,10 @@
 {
   "go.autocompleteUnimportedPackages": true,
-  "go.useLanguageServer": true
+  "go.useLanguageServer": true,
+  "rest-client.environmentVariables": {
+    "$shared": {},
+    "local": {
+      "baseUrl": "http://localhost:8080"
+    }
+  }
 }

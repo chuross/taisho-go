@@ -1,0 +1,1 @@
+POST {{baseUrl}}/api/v1/line/callback
