@@ -5,7 +5,12 @@ settings:
 schema:
 - name: taisho
   path: .
-  commands: {}
+  commands:
+    build:
+      status: true
+      method: go build -o app ./internal/main.go
+    run:
+      status: true
   watcher:
     extensions:
     - go
