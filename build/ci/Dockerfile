@@ -8,6 +8,8 @@ FROM golang:1.15.2 as builder
 ARG NAME_SPACE
 ARG PROJECT_DIR
 
+ENV GIN_MODE=release
+
 RUN mkdir -p ${PROJECT_DIR}
 WORKDIR ${PROJECT_DIR}
 
