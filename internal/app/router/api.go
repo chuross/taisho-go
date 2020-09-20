@@ -7,5 +7,9 @@ import (
 
 func SetUpAPI(r *gin.Engine) {
 	api := r.Group("api")
-	router_api.SetUpV1API(api)
+	
+	v1 := api.Group("v1")
+	{
+		v1.POST("line/callback", apiv1.PostLineCallback)
+	}
 }
