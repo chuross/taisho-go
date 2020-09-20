@@ -24,4 +24,4 @@ jobs:
       - name: Push Docker Registory
         run: docker push ${IMAGE_ID}
       - name: Deploy to Cloud Run
-        run: gcloud run deploy taisho --image ${IMAGE_ID} --platform managed --resion ${GCP_RESION}
+        run: gcloud run deploy taisho --image ${IMAGE_ID} --platform managed --region ${GCP_RESION}
