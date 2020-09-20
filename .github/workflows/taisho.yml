@@ -20,7 +20,7 @@ jobs:
       - name: configure Docker Registory
         run: gcloud auth configure-docker --quiet
       - name: Build Docker image
-        run: docker build -t ${IMAGE_ID}:${IMAGE_TAG} -f build/ci/Dockerfile .
+        run: docker build --no-cache -t ${IMAGE_ID}:${IMAGE_TAG} -f build/ci/Dockerfile .
       - name: Push Docker Registory
         run: docker push ${IMAGE_ID}
       - name: Deploy to Cloud Run
