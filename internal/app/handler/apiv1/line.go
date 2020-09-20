@@ -1,8 +1,6 @@
 package apiv1
 
 import (
-	"fmt"
-
 	ginext "github.com/chuross/taisho/internal/app/ext/gin"
 	"github.com/chuross/taisho/internal/app/ext/line"
 	service "github.com/chuross/taisho/pkg/service/line"
@@ -26,7 +24,6 @@ func PostLineCallback(c *gin.Context) {
 		if ms, err := service.ReplyLineMessages(event); err != nil {
 			c.AbortWithError(500, xerrors.Errorf("line message handle error: %w", err))
 		} else {
-			fmt.Printf("replymessage: %d", len(ms))
 			client.ReplyMessage(event.ReplyToken, ms...)
 		}
 	}
