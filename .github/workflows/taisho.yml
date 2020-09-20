@@ -4,7 +4,7 @@ on:
     branches:
       - master
 env:
-  IMAGE_ID: gcr.io/${{secrets.GCP_PROJECT_ID}}/taisho
+  IMAGE_ID: asia.gcr.io/${{secrets.GCP_PROJECT_ID}}/taisho
   IMAGE_TAG: latest
 jobs:
   build:
@@ -19,6 +19,6 @@ jobs:
       - name: Build Docker image
         run: docker build -t ${IMAGE_ID}:${IMAGE_TAG} -f build/ci/Dockerfile .
       - name: Push Docker Registory
-        run: gcloud builds submit --tag ${IMAGE_ID}
+        run: docker push ${IMAGE_ID}
       - name: Deploy to Cloud Run
         run: gcloud run deploy --image --platform managed ${IMAGE_ID}
