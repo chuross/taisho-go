@@ -6,7 +6,7 @@ on:
 env:
   IMAGE_ID: gcr.io/${{secrets.GCP_PROJECT_ID}}/taisho
   IMAGE_TAG: latest
-job:
+jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
