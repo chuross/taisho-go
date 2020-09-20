@@ -10,7 +10,7 @@ import (
 func ValidateLineSignature(c *gin.Context) {
 	client, err := line.NewClient()
 	if err != nil {
-		c.AbortWithError(400, xerrors.Errorf("line client instansiate failed.: %w", err))
+		c.AbortWithError(500, xerrors.Errorf("line client init failed.: %w", err))
 		return
 	}
 
