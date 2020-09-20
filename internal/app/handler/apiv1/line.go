@@ -24,5 +24,5 @@ func PostLineCallback(c *gin.Context) {
 		client.ReplyMessage(event.ReplyToken, m)
 	}
 
-	c.Status(200)
+	c.Status(403)
 }
