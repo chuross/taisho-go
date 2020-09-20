@@ -26,7 +26,7 @@ func PostLineCallback(c *gin.Context) {
 		if ms, err := service.ReplyLineMessages(event); err != nil {
 			c.AbortWithError(500, xerrors.Errorf("line message handle error: %w", err))
 		} else {
-			fmt.Printf("replymessage: %s", "text")
+			fmt.Printf("replymessage: %d", len(ms))
 			client.ReplyMessage(event.ReplyToken, ms...)
 		}
 	}
