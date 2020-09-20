@@ -16,6 +16,8 @@ jobs:
           project_id: ${{secrets.GCP_PROJECT_ID}}
           service_account_key: ${{secrets.GCP_SERVICE_ACCOUNT}}
           export_default_credentials: true
+      - name: configure Docker Registory
+        run: gcloud auth configure-docker --quiet
       - name: Build Docker image
         run: docker build -t ${IMAGE_ID}:${IMAGE_TAG} -f build/ci/Dockerfile .
       - name: Push Docker Registory
