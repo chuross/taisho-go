@@ -1,6 +1,7 @@
 package router
 
 import (
+	"github.com/chuross/taisho/internal/app/handler/apiv1"
 	"github.com/gin-gonic/gin"
 )
 
