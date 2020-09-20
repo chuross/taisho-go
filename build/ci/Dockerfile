@@ -21,6 +21,8 @@ FROM alpine:latest
 
 ARG PROJECT_DIR
 
+ENV GIN_MODE=release
+
 RUN mkdir -p /go/bin
 WORKDIR /go/bin
 
@@ -28,4 +30,4 @@ COPY --from=builder ${PROJECT_DIR}/taisho ./taisho
 
 EXPOSE 8080
 
-CMD ["GIN_MODE=release", "./taisho"]
+CMD ["./taisho"]
