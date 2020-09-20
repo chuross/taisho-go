@@ -1,0 +1,8 @@
+name: taisho-ci
+on:
+  push:
+    branches:
+      - master
+job:
+  build:
+    runs-on: ubuntu-18.04

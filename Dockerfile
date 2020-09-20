@@ -14,4 +14,4 @@ COPY ./ ${PROJECT_DIR}
 
 RUN go build -o taisho ./cmd/taisho/main.go
 
-CMD ["bin/bash", "taisho"]
+CMD ["./taisho"]
