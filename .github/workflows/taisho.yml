@@ -6,6 +6,7 @@ on:
 env:
   IMAGE_ID: asia.gcr.io/${{secrets.GCP_PROJECT_ID}}/taisho
   IMAGE_TAG: latest
+  GCP_RESION: asia-northeast1
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -23,4 +24,4 @@ jobs:
       - name: Push Docker Registory
         run: docker push ${IMAGE_ID}
       - name: Deploy to Cloud Run
-        run: gcloud run deploy taisho --image ${IMAGE_ID} --platform managed
+        run: gcloud run deploy taisho --image ${IMAGE_ID} --platform managed --resion ${GCP_RESION}
