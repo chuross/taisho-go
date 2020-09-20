@@ -8,8 +8,6 @@ FROM golang:1.15.2 as builder
 ARG NAME_SPACE
 ARG PROJECT_DIR
 
-ENV GIN_MODE=release
-
 RUN mkdir -p ${PROJECT_DIR}
 WORKDIR ${PROJECT_DIR}
 
@@ -30,4 +28,4 @@ COPY --from=builder ${PROJECT_DIR}/taisho ./taisho
 
 EXPOSE 8080
 
-CMD ["./taisho"]
+CMD ["GIN_MODE=release", "./taisho"]
