@@ -2,10 +2,10 @@ version: "3.8"
 services:
   app:
     build:
-      context: ./build/app
+      context: ../../build/local
       args:
         NAME_SPACE: github.com/chuross/taisho
     ports:
       - "127.0.0.1:8080:8080"
     volumes:
-      - ./:/go/src/github.com/chuross/taisho
+      - ../../:/go/src/github.com/chuross/taisho
