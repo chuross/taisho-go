@@ -16,7 +16,7 @@ const (
 
 type SearchType string
 
-func Search(ctx context.Context, keyword string, searchType SearchType, num int64) (*search.Result, error) {
+func Search(ctx context.Context, keyword string, searchType SearchType) (*search.Result, error) {
 	client, err := customsearch.NewService(ctx, option.WithAPIKey(os.Getenv("TAISHO_SEARCH_API_KEY")))
 	if err != nil {
 		return nil, xerrors.Errorf("customsearch init failed: %w", err)
@@ -25,8 +25,7 @@ func Search(ctx context.Context, keyword string, searchType SearchType, num int6
 	req := client.Cse.List().
 		Q(keyword).
 		Cx(os.Getenv("TAISHO_SEARCH_ID")).
-		SearchType(string(searchType)).
-		Num(num)
+		SearchType(string(searchType))
 
 	call, err := req.Do()
 	if err != nil {
