@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"log"
 	"strings"
 
 	"github.com/chuross/taisho/pkg/service/line/bot_command"
@@ -39,6 +40,9 @@ func dispatch(ctx context.Context, event *linebot.Event, message *linebot.TextMe
 		if !command.Pattern().MatchString(message.Text) {
 			continue
 		}
+
+		log.Printf("command exec: %s", command.Pattern().String())
+
 		ms, err := command.Exec(ctx, event, message)
 		if err != nil {
 			return messages, xerrors.Errorf("line reply error: %w", err)
