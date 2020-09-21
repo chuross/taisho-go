@@ -27,6 +27,10 @@ func ReplyLineMessages(event *linebot.Event) ([]linebot.SendingMessage, error) {
 }
 
 func dispatch(event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {
+	if message.Text == "大将！" {
+		return helpCommand(), nil
+	}
+
 	messages := make([]linebot.SendingMessage, 0)
 	for _, command := range commands {
 		if !command.IsExecutable(event, message) {
