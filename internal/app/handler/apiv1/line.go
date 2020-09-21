@@ -11,7 +11,7 @@ import (
 func PostLineCallback(c *gin.Context) {
 	client, err := line.NewClient()
 	if err != nil {
-		c.AbortWithError(500, xerrors.Errorf("line client init failed.: %w", err))
+		c.AbortWithError(500, xerrors.Errorf("line client init failed: %w", err))
 		return
 	}
 	events, err := ginext.GetLineEvents(c)
@@ -21,9 +21,11 @@ func PostLineCallback(c *gin.Context) {
 	}
 
 	for _, event := range events {
-		if ms, err := service.ReplyLineMessages(event); err != nil {
+		ms, err := service.ReplyLineMessages(event)
+		if err != nil {
 			c.AbortWithError(500, xerrors.Errorf("line message handle error: %w", err))
-		} else {
+		}
+		if len(ms) > 0 {
 			client.ReplyMessage(event.ReplyToken, ms...).WithContext(c.Request.Context()).Do()
 		}
 	}
