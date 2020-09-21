@@ -20,7 +20,7 @@ func (c *Debug) Pattern() *regexp.Regexp {
 }
 
 func (c *Debug) Exec(ctx context.Context, event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {
-	log.Printf("line_user_id=%s, room_id=%s", event.Source.UserID, event.Source.RoomID)
+	log.Printf("line_user_id=%s, group_id=%s, room_id=%s", event.Source.UserID, event.Source.GroupID, event.Source.RoomID)
 
 	return []linebot.SendingMessage{
 		linebot.NewTextMessage("受け付けたよ！"),

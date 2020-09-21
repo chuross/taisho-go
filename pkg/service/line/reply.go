@@ -15,6 +15,7 @@ var (
 		&bot_command.Debug{},
 		&bot_command.Itsumono{},
 		&bot_command.Weather{},
+		&bot_command.Calendar{},
 	}
 )
 
