@@ -13,6 +13,7 @@ var (
 	commands = []bot_command.LineBotCommand{
 		&bot_command.Debug{},
 		&bot_command.Itsumono{},
+		&bot_command.Weather{},
 	}
 )
 

@@ -13,7 +13,7 @@ type Itsumono struct {
 }
 
 func (c *Itsumono) Doc() string {
-	return "いつもの握ってまってやすぜ"
+	return "大将！いつもの - いつもの握ってまってやすぜ"
 }
 
 func (c *Itsumono) Pattern() *regexp.Regexp {
