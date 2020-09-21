@@ -56,7 +56,7 @@ func dispatch(ctx context.Context, event *linebot.Event, message *linebot.TextMe
 
 func helpCommand() []linebot.SendingMessage {
 	docs := make([]string, 0)
-	docs = append(docs, "以下の注文を受け付けているよ！")
+	docs = append(docs, "お品書きだよ！")
 	for _, c := range commands {
 		if len(c.Doc()) > 0 {
 			docs = append(docs, c.Doc())

@@ -4,9 +4,10 @@ import (
 	"context"
 	"os"
 	"regexp"
+	"strings"
 
 	"github.com/chuross/taisho/pkg/service"
-	"github.com/chuross/taisho/pkg/service/line/bot_command"
+	"github.com/chuross/taisho/pkg/util"
 	"github.com/line/line-bot-sdk-go/linebot"
 	"golang.org/x/xerrors"
 	"google.golang.org/api/calendar/v3"
@@ -24,7 +25,16 @@ func (c *Calendar) Pattern() *regexp.Regexp {
 }
 
 func (c *Calendar) Exec(ctx context.Context, event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {
-	options := bot_command.ParseOptions(message)
+	wlgID := os.Getenv("TAISHO_WHITE_LIST_GROUP_ID")
+	wlgIDs := strings.Split(wlgID, ",")
+
+	if !util.ContainsString(wlgIDs, event.Source.GroupID) {
+		return []linebot.SendingMessage{
+			linebot.NewTextMessage("この注文は一見さんはお断りだよ"),
+		}, nil
+	}
+
+	options := ParseOptions(message)
 	if len(options) != 2 {
 		return []linebot.SendingMessage{}, xerrors.New("invalid arguments")
 	}
