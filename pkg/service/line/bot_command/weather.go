@@ -13,7 +13,7 @@ type Weather struct {
 }
 
 func (c *Weather) Doc() string {
-	return "大将！アメッシュ - 関東の天気図を探してくるよ"
+	return "大将！アメッシュ\n関東の天気図を探してくるよ"
 }
 
 func (c *Weather) Pattern() *regexp.Regexp {
