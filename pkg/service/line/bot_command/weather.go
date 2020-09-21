@@ -2,6 +2,7 @@ package bot_command
 
 import (
 	"context"
+	"log"
 	"regexp"
 
 	"github.com/chuross/taisho/pkg/service"
@@ -21,13 +22,14 @@ func (c *Weather) Pattern() *regexp.Regexp {
 }
 
 func (c *Weather) Exec(ctx context.Context, event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {
-	imageUrl, err := service.GetWeatherImage()
+	imageURL, err := service.GetWeatherImage()
+	log.Print(imageURL)
 	if err != nil {
 		return make([]linebot.SendingMessage, 0), xerrors.Errorf("weather command failed: %w", err)
 	}
 
 	return []linebot.SendingMessage{
 		linebot.NewTextMessage("へいお待ち！"),
-		linebot.NewImageMessage(*imageUrl, *imageUrl),
+		linebot.NewImageMessage(*imageURL, *imageURL),
 	}, nil
 }

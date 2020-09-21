@@ -21,13 +21,13 @@ func (c *Itsumono) Pattern() *regexp.Regexp {
 }
 
 func (c *Itsumono) Exec(ctx context.Context, event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {
-	imageUrl, err := service.Itsumono(ctx)
-	if err != nil || imageUrl == nil {
+	imageURL, err := service.Itsumono(ctx)
+	if err != nil || imageURL == nil {
 		return make([]linebot.SendingMessage, 0), xerrors.Errorf("itsumono command failed: %w", err)
 	}
 
 	return []linebot.SendingMessage{
 		linebot.NewTextMessage("へいお待ち！"),
-		linebot.NewImageMessage(*imageUrl, *imageUrl),
+		linebot.NewImageMessage(*imageURL, *imageURL),
 	}, nil
 }
