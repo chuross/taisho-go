@@ -1,6 +1,7 @@
 package service
 
 import (
+	"context"
 	"strings"
 
 	"github.com/chuross/taisho/pkg/service/line/bot_command"
@@ -11,32 +12,33 @@ import (
 var (
 	commands = []bot_command.LineBotCommand{
 		&bot_command.Debug{},
+		&bot_command.Itsumono{},
 	}
 )
 
-func ReplyLineMessages(event *linebot.Event) ([]linebot.SendingMessage, error) {
+func ReplyLineMessages(ctx context.Context, event *linebot.Event) ([]linebot.SendingMessage, error) {
 	messages := make([]linebot.SendingMessage, 0)
 	switch event.Type {
 	case linebot.EventTypeMessage:
 		switch m := event.Message.(type) {
 		case *linebot.TextMessage:
-			return dispatch(event, m)
+			return dispatch(ctx, event, m)
 		}
 	}
 	return messages, nil
 }
 
-func dispatch(event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {
+func dispatch(ctx context.Context, event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {
 	if message.Text == "大将！" {
 		return helpCommand(), nil
 	}
 
 	messages := make([]linebot.SendingMessage, 0)
 	for _, command := range commands {
-		if !command.IsExecutable(event, message) {
+		if command.Pattern().MatchString(message.Text) {
 			continue
 		}
-		ms, err := command.Exec(event, message)
+		ms, err := command.Exec(ctx, event, message)
 		if err != nil {
 			return messages, xerrors.Errorf("line reply error: %w", err)
 		}

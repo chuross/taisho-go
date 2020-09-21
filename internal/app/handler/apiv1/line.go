@@ -21,7 +21,7 @@ func PostLineCallback(c *gin.Context) {
 	}
 
 	for _, event := range events {
-		ms, err := service.ReplyLineMessages(event)
+		ms, err := service.ReplyLineMessages(c.Request.Context(), event)
 		if err != nil {
 			c.AbortWithError(500, xerrors.Errorf("line message handle error: %w", err))
 		}
