@@ -25,7 +25,8 @@ func Search(ctx context.Context, keyword string, searchType SearchType) (*search
 	req := client.Cse.List().
 		Q(keyword).
 		Cx(os.Getenv("TAISHO_SEARCH_ID")).
-		SearchType(string(searchType))
+		SearchType(string(searchType)).
+		Safe("active")
 
 	call, err := req.Do()
 	if err != nil {
