@@ -30,7 +30,7 @@ func (c *Calendar) Exec(ctx context.Context, event *linebot.Event, message *line
 
 	if !util.ContainsString(wlgIDs, event.Source.GroupID) {
 		return []linebot.SendingMessage{
-			linebot.NewTextMessage("この注文は一見さんはお断りだよ"),
+			linebot.NewTextMessage("この注文は一見さんお断りだよ"),
 		}, nil
 	}
 
