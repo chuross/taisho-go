@@ -8,7 +8,7 @@ import (
 )
 
 func Itsumono(ctx context.Context) (*string, error) {
-	res, err := Search(ctx, "寿司", SearchTypeImage)
+	res, err := Search(ctx, "超高級寿司", SearchTypeImage)
 	if err != nil {
 		return nil, xerrors.Errorf("itsumono failed: %w", err)
 	}
