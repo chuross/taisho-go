@@ -35,7 +35,7 @@ func dispatch(ctx context.Context, event *linebot.Event, message *linebot.TextMe
 
 	messages := make([]linebot.SendingMessage, 0)
 	for _, command := range commands {
-		if command.Pattern().MatchString(message.Text) {
+		if !command.Pattern().MatchString(message.Text) {
 			continue
 		}
 		ms, err := command.Exec(ctx, event, message)
