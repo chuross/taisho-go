@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"math/rand"
 
 	"golang.org/x/xerrors"
 )
@@ -12,7 +13,7 @@ func Itsumono(ctx context.Context) (*string, error) {
 		return nil, xerrors.Errorf("itsumono failed: %w", err)
 	}
 	if len(res.Links) > 0 {
-		return res.Links[0], nil
+		return res.Links[rand.Intn(len(res.Links))], nil
 	}
 	return nil, nil
 }
