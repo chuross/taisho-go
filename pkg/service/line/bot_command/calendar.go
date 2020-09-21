@@ -47,6 +47,9 @@ func (c *Calendar) Exec(ctx context.Context, event *linebot.Event, message *line
 		Start: &calendar.EventDateTime{
 			Date: date,
 		},
+		End: &calendar.EventDateTime{
+			Date: date,
+		},
 	}
 
 	if err := service.CreateCalendarEvent(ctx, os.Getenv("TAISHO_CALENDAR_ID"), e); err != nil {
