@@ -18,6 +18,6 @@ func GetWeatherImage() (*string, error) {
 		return nil, xerrors.New("element not found")
 	}
 
-	url := elm.First().After("src").Text()
+	url, _ := elm.First().Attr("src")
 	return &url, nil
 }
