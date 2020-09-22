@@ -24,8 +24,8 @@ func Get(text string, sentLimit int) (*SummpyResult, error) {
 	if err != nil {
 		return nil, xerrors.Errorf("summpy init parse error: %w", err)
 	}
-	url.Query().Set("text", text)
-	url.Query().Set("sent_limit", string(sentLimit))
+	url.Query().Add("text", text)
+	url.Query().Add("sent_limit", string(sentLimit))
 
 	req, err := http.NewRequest("GET", url.String(), nil)
 	if err != nil {
