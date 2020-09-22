@@ -31,13 +31,13 @@ func GetUrlContentSummary(url string) (*url_content.Summary, error) {
 		return nil, xerrors.Errorf("extract aricle error: %w", err)
 	}
 
-	sumRes, err := summpy.Get(article.CleanedText, 3)
+	_, err = summpy.Get(article.CleanedText, 3)
 	if err != nil {
 		return nil, xerrors.Errorf("summpy error: %w", err)
 	}
 
 	return &url_content.Summary{
 		TopImageUrl: &article.TopImage,
-		Summaries:   sumRes.Summaries,
+		Summaries:   make([]string, 0),
 	}, nil
 }
