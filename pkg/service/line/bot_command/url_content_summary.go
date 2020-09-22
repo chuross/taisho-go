@@ -31,8 +31,7 @@ func (c *UrlContentSummary) Exec(ctx context.Context, event *linebot.Event, mess
 		return make([]linebot.SendingMessage, 0), xerrors.Errorf("url content summary command failed: %w", err)
 	}
 
-	mes := make([]linebot.SendingMessage, 0)
-	if len(mes) == 0 {
+	if len(summary.Summaries) == 0 {
 		log.Infof(ctx, "empty summary url="+url)
 		return make([]linebot.SendingMessage, 0), nil
 	}
