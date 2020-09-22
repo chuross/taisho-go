@@ -2,13 +2,13 @@ package bot_command
 
 import (
 	"context"
+	"log"
 	"regexp"
 	"strings"
 
 	"github.com/chuross/taisho/pkg/service"
 	"github.com/line/line-bot-sdk-go/linebot"
 	"golang.org/x/xerrors"
-	"google.golang.org/appengine/log"
 )
 
 var urlContentSummaryPattern = regexp.MustCompile(`https?://[\w!\?/\+\-_~=;\.,\*&@#\$%\(\)'\[\]]+`)
@@ -36,7 +36,7 @@ func (c *UrlContentSummary) Exec(ctx context.Context, event *linebot.Event, mess
 	}
 
 	if len(summary.Summaries) == 0 {
-		log.Infof(ctx, "empty summary url="+url)
+		log.Printf("empty summary url=" + url)
 		return make([]linebot.SendingMessage, 0), nil
 	}
 
