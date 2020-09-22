@@ -40,7 +40,7 @@ func GetUrlContentSummary(url string) (*url_content.Summary, error) {
 
 	content, _ := gec.Analyse(string(body), nil)
 	if err != nil {
-		return nil, xerrors.Errorf("extract content error: %w", err)
+		return nil, xerrors.Errorf("content extract error: %w", err)
 	}
 
 	if len(content) == 0 {
