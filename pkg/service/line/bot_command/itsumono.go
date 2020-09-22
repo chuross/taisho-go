@@ -17,7 +17,7 @@ func (c *Itsumono) Doc() string {
 }
 
 func (c *Itsumono) Pattern() *regexp.Regexp {
-	return regexp.MustCompile("^大将！いつもの$")
+	return regexp.MustCompile(`^大将！いつもの$`)
 }
 
 func (c *Itsumono) Exec(ctx context.Context, event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {

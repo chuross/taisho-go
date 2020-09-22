@@ -21,7 +21,7 @@ func (c *Calendar) Doc() string {
 }
 
 func (c *Calendar) Pattern() *regexp.Regexp {
-	return regexp.MustCompile("^大将！予定 ([0-9]{4}-[0-9]{2}-[0-9]{2}) (.+)")
+	return regexp.MustCompile(`^大将！予定 ([0-9]{4}-[0-9]{2}-[0-9]{2}) (.+)`)
 }
 
 func (c *Calendar) Exec(ctx context.Context, event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {

@@ -16,7 +16,7 @@ func (c *Debug) Doc() string {
 }
 
 func (c *Debug) Pattern() *regexp.Regexp {
-	return regexp.MustCompile("^大将！デバッグ$")
+	return regexp.MustCompile(`^大将！デバッグ$`)
 }
 
 func (c *Debug) Exec(ctx context.Context, event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {

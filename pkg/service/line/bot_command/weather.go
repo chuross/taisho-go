@@ -17,7 +17,7 @@ func (c *Weather) Doc() string {
 }
 
 func (c *Weather) Pattern() *regexp.Regexp {
-	return regexp.MustCompile("^大将！アメッシュ$")
+	return regexp.MustCompile(`^大将！アメッシュ$`)
 }
 
 func (c *Weather) Exec(ctx context.Context, event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {
