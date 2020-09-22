@@ -30,7 +30,9 @@ func GetUrlContentSummary(url string) (*url_content.Summary, error) {
 		fallthrough
 	case strings.Contains(res.Header.Get("Content-Type"), "text/html"):
 	default:
-		return nil, nil
+		return &url_content.Summary{
+			Summaries: make([]string, 0),
+		}, nil
 	}
 
 	body, err := ioutil.ReadAll(res.Body)
@@ -48,12 +50,12 @@ func GetUrlContentSummary(url string) (*url_content.Summary, error) {
 		return nil, nil
 	}
 
-	_, err = summpy.Get(content, 3)
+	result, err := summpy.Get(content, 3)
 	if err != nil {
 		return nil, xerrors.Errorf("summpy error: %w", err)
 	}
 
 	return &url_content.Summary{
-		Summaries: make([]string, 0),
+		Summaries: result.Summaries,
 	}, nil
 }
