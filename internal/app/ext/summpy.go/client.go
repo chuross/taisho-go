@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
+	"strconv"
 
 	google_ext "github.com/chuross/taisho/internal/app/ext/google"
 	"golang.org/x/xerrors"
@@ -26,7 +27,7 @@ func Get(text string, sentLimit int) (*SummpyResult, error) {
 
 	q := req.URL.Query()
 	q.Add("text", text)
-	q.Add("sent_limit", string(sentLimit))
+	q.Add("sent_limit", strconv.Itoa(sentLimit))
 	req.URL.RawQuery = q.Encode()
 
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", idToken))
