@@ -1,6 +1,6 @@
 package url_content
 
 type Summary struct {
-	TopImageUrl string
+	TopImageUrl *string
 	Summaries   []string
 }
