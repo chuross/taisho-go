@@ -37,7 +37,7 @@ func GetUrlContentSummary(url string) (*url_content.Summary, error) {
 	}
 
 	return &url_content.Summary{
-		TopImageUrl: article.TopImage,
+		TopImageUrl: &article.TopImage,
 		Summaries:   sumRes.Summaries,
 	}, nil
 }
