@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -37,7 +36,9 @@ func GetUrlContentSummary(url string) (*url_content.Summary, error) {
 		return nil, xerrors.Errorf("extract aricle error: %w", err)
 	}
 
-	fmt.Printf("content: %s", article.CleanedText)
+	if article == nil {
+		return nil, xerrors.New("extract article is nil")
+	}
 
 	_, err = summpy.Get(article.CleanedText, 3)
 	if err != nil {
