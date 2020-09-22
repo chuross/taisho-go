@@ -3,6 +3,7 @@ package service
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
 	goose "github.com/advancedlogic/GoOse"
 	"github.com/chuross/taisho/internal/app/ext/summpy.go"
@@ -23,10 +24,10 @@ func GetUrlContentSummary(url string) (*url_content.Summary, error) {
 		return nil, xerrors.Errorf("article fetch error: status=%d", res.StatusCode)
 	}
 
-	switch res.Header.Get("Content-Type") {
-	case "text/plain":
+	switch {
+	case strings.Contains(res.Header.Get("Content-Type"), "text/plain"):
 		fallthrough
-	case "text/html":
+	case strings.Contains(res.Header.Get("Content-Type"), "text/html"):
 	default:
 		return nil, nil
 	}
