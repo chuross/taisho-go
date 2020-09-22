@@ -8,6 +8,7 @@ import (
 	"github.com/chuross/taisho/pkg/service"
 	"github.com/line/line-bot-sdk-go/linebot"
 	"golang.org/x/xerrors"
+	"google.golang.org/appengine/log"
 )
 
 var urlContentSummaryPattern = regexp.MustCompile(`https?://[\w!\?/\+\-_~=;\.,\*&@#\$%\(\)'\[\]]+`)
@@ -28,6 +29,12 @@ func (c *UrlContentSummary) Exec(ctx context.Context, event *linebot.Event, mess
 	summary, err := service.GetUrlContentSummary(url)
 	if err != nil {
 		return make([]linebot.SendingMessage, 0), xerrors.Errorf("url content summary command failed: %w", err)
+	}
+
+	mes := make([]linebot.SendingMessage, 0)
+	if len(mes) == 0 {
+		log.Infof(ctx, "empty summary url="+url)
+		return make([]linebot.SendingMessage, 0), nil
 	}
 
 	return []linebot.SendingMessage{
