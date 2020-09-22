@@ -3,7 +3,7 @@ module github.com/chuross/taisho
 go 1.15
 
 require (
-	cloud.google.com/go v0.66.0 // indirect
+	cloud.google.com/go v0.66.0
 	github.com/PuerkitoBio/goquery v1.5.1
 	github.com/advancedlogic/GoOse v0.0.0-20200830213114-1225d531e0ad
 	github.com/andybalholm/cascadia v1.2.0 // indirect
