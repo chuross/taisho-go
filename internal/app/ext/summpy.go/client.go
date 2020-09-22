@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"net/url"
 	"os"
 
 	google_ext "github.com/chuross/taisho/internal/app/ext/google"
@@ -20,18 +19,17 @@ func Get(text string, sentLimit int) (*SummpyResult, error) {
 		return nil, xerrors.Errorf("id token get error: %w", err)
 	}
 
-	url, err := url.Parse(apiURL)
-	if err != nil {
-		return nil, xerrors.Errorf("summpy init parse error: %w", err)
-	}
-	url.Query().Add("text", text)
-	url.Query().Add("sent_limit", string(sentLimit))
-
-	req, err := http.NewRequest("GET", url.String(), nil)
+	req, err := http.NewRequest("GET", apiURL, nil)
 	if err != nil {
 		return nil, xerrors.Errorf("summpy request error: %w", err)
 	}
-	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", idToken))
+
+	q := req.URL.Query()
+	q.Add("text", text)
+	q.Add("sent_limit", string(sentLimit))
+	req.URL.RawQuery = q.Encode()
+
+	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", idToken))
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
