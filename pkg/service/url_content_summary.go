@@ -1,7 +1,7 @@
 package service
 
 import (
-	"context"
+	"log"
 	"net/http"
 	"strings"
 
@@ -9,10 +9,9 @@ import (
 	"github.com/chuross/taisho/internal/app/ext/summpy.go"
 	"github.com/chuross/taisho/pkg/model/url_content"
 	"golang.org/x/xerrors"
-	"google.golang.org/appengine/log"
 )
 
-func GetUrlContentSummary(ctx context.Context, url string) (*url_content.Summary, error) {
+func GetUrlContentSummary(url string) (*url_content.Summary, error) {
 	ext := goose.New()
 	res, err := http.Get(url)
 	if err != nil {
@@ -43,7 +42,7 @@ func GetUrlContentSummary(ctx context.Context, url string) (*url_content.Summary
 	}
 
 	if len(article.CleanedText) == 0 {
-		log.Infof(ctx, "article content is empty")
+		log.Printf("article content is empty")
 		return nil, nil
 	}
 

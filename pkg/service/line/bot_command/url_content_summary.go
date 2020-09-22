@@ -26,7 +26,7 @@ func (c *UrlContentSummary) Pattern() *regexp.Regexp {
 
 func (c *UrlContentSummary) Exec(ctx context.Context, event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {
 	url := urlContentSummaryPattern.FindString(message.Text)
-	summary, err := service.GetUrlContentSummary(ctx, url)
+	summary, err := service.GetUrlContentSummary(url)
 	if err != nil {
 		return make([]linebot.SendingMessage, 0), xerrors.Errorf("url content summary command failed: %w", err)
 	}
