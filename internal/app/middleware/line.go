@@ -1,15 +1,15 @@
 package middleware
 
 import (
-	ginext "github.com/chuross/taisho/internal/app/ext/gin"
-	"github.com/chuross/taisho/internal/app/ext/line"
+	gin_ext "github.com/chuross/taisho/internal/app/ext/gin"
+	line_ext "github.com/chuross/taisho/internal/app/ext/line"
 	"github.com/gin-gonic/gin"
 	"github.com/line/line-bot-sdk-go/linebot"
 	"golang.org/x/xerrors"
 )
 
 func ValidateLineSignature(c *gin.Context) {
-	client, err := line.NewClient()
+	client, err := line_ext.NewClient()
 	if err != nil {
 		c.AbortWithError(500, xerrors.Errorf("line client init failed: %w", err))
 		return
@@ -21,7 +21,7 @@ func ValidateLineSignature(c *gin.Context) {
 		return
 	}
 
-	ginext.SetLineEvents(c, events)
+	gin_ext.SetLineEvents(c, events)
 
 	c.Next()
 }

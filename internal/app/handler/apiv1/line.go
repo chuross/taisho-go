@@ -1,20 +1,20 @@
 package apiv1
 
 import (
-	ginext "github.com/chuross/taisho/internal/app/ext/gin"
-	"github.com/chuross/taisho/internal/app/ext/line"
+	gin_ext "github.com/chuross/taisho/internal/app/ext/gin"
+	line_ext "github.com/chuross/taisho/internal/app/ext/line"
 	service "github.com/chuross/taisho/pkg/service/line"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/xerrors"
 )
 
 func PostLineCallback(c *gin.Context) {
-	client, err := line.NewClient()
+	client, err := line_ext.NewClient()
 	if err != nil {
 		c.AbortWithError(500, xerrors.Errorf("line client init failed: %w", err))
 		return
 	}
-	events, err := ginext.GetLineEvents(c)
+	events, err := gin_ext.GetLineEvents(c)
 	if err != nil {
 		c.AbortWithError(400, xerrors.Errorf("parse line request failed: %w", err))
 		return

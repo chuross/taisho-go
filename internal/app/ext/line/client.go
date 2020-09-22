@@ -1,4 +1,4 @@
-package line
+package line_ext
 
 import (
 	"github.com/chuross/taisho/pkg/config"

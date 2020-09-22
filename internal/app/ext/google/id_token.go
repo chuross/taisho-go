@@ -1,4 +1,4 @@
-package ext_google
+package google_ext
 
 import (
 	"fmt"
