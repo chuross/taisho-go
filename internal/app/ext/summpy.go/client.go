@@ -24,6 +24,10 @@ func Get(text string, sentLimit int) (*SummpyResult, error) {
 	}
 	defer res.Body.Close()
 
+	if res.StatusCode != 200 {
+		return nil, xerrors.Errorf("summpy request error: status=%d", res.StatusCode)
+	}
+
 	b, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return nil, xerrors.Errorf("summpy read body error: %w", err)

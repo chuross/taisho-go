@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"net/http"
 
 	goose "github.com/advancedlogic/GoOse"
@@ -30,6 +31,8 @@ func GetUrlContentSummary(url string) (*url_content.Summary, error) {
 	if err != nil {
 		return nil, xerrors.Errorf("extract aricle error: %w", err)
 	}
+
+	fmt.Printf("content: %s", article.CleanedText)
 
 	_, err = summpy.Get(article.CleanedText, 3)
 	if err != nil {
