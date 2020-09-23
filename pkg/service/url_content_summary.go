@@ -50,7 +50,7 @@ func GetUrlContentSummary(url string) (*url_content.Summary, error) {
 		return nil, nil
 	}
 
-	result, err := summpy.Get(content, 4)
+	result, err := summpy.Get(content, 3)
 	if err != nil {
 		return nil, xerrors.Errorf("summpy error: %w", err)
 	}
