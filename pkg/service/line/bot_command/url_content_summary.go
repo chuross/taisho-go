@@ -40,8 +40,12 @@ func (c *UrlContentSummary) Exec(ctx context.Context, event *linebot.Event, mess
 		return make([]linebot.SendingMessage, 0), nil
 	}
 
+	var text strings.Builder
+	text.WriteString("要約しといたよ！" + "\n")
+	text.WriteString(url + "\n")
+	text.WriteString(strings.Join(summary.Summaries, "\n\n"))
+
 	return []linebot.SendingMessage{
-		linebot.NewTextMessage("要約しといたよ！" + "\n" + url),
-		linebot.NewTextMessage(strings.Join(summary.Summaries, "\n\n")),
+		linebot.NewTextMessage(text.String()),
 	}, nil
 }
