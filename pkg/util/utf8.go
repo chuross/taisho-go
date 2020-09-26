@@ -19,13 +19,18 @@ func ToUTF8(data []byte) (string, error) {
 	switch dr.Charset {
 	case "UTF-8", "ISO-8859-1":
 		return string(data), nil
-	case "Shift-JIS":
+	case "Shift_JIS":
 		trans = japanese.ShiftJIS.NewDecoder()
 	case "EUC-JP":
 		trans = japanese.EUCJP.NewDecoder()
 	case "ISO-2022-JP":
 		trans = japanese.ISO2022JP.NewDecoder()
 	}
+
+	if trans == nil {
+		return "", xerrors.Errorf("decode transformer not assigned")
+	}
+
 	buf := new(bytes.Buffer)
 	io.Copy(buf, transform.NewReader(bytes.NewReader(data), trans))
 	return buf.String(), nil
