@@ -10,6 +10,7 @@ import (
 
 	"github.com/chuross/taisho/internal/app/ext/summpy.go"
 	"github.com/chuross/taisho/pkg/model/url_content"
+	"github.com/chuross/taisho/pkg/util"
 	"golang.org/x/xerrors"
 )
 
@@ -40,7 +41,12 @@ func GetUrlContentSummary(url string) (*url_content.Summary, error) {
 		return nil, xerrors.Errorf("content read error: %w", err)
 	}
 
-	content, _ := gec.Analyse(string(body), nil)
+	bodyStr, err := util.ToUTF8(body)
+	if err != nil {
+		return nil, xerrors.Errorf("content to utf8 error: %w", err)
+	}
+
+	content, _ := gec.Analyse(bodyStr, nil)
 	if err != nil {
 		return nil, xerrors.Errorf("content extract error: %w", err)
 	}
