@@ -5,7 +5,7 @@ import (
 	"golang.org/x/xerrors"
 )
 
-const weatherURL = "https://weather.yahoo.co.jp/weather/jp/raincloud/3.html"
+const weatherURL = "https://tenki.jp/radar/"
 
 func GetWeatherImage() (*string, error) {
 	doc, err := goquery.NewDocument(weatherURL)
@@ -13,7 +13,7 @@ func GetWeatherImage() (*string, error) {
 		return nil, xerrors.Errorf("get weather node error: %w", err)
 	}
 
-	elm := doc.Find("#imgDatCh .mainImg img")
+	elm := doc.Find("#radar-image")
 	if elm == nil {
 		return nil, xerrors.New("element not found")
 	}
