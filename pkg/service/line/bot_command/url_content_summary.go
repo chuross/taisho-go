@@ -13,20 +13,20 @@ import (
 
 var urlContentSummaryPattern = regexp.MustCompile(`https?://[\w!\?/\+\-_~=;\.,\*&@#\$%\(\)'\[\]]+`)
 
-type UrlContentSummary struct {
+type URLContentSummary struct {
 }
 
-func (c *UrlContentSummary) Doc() string {
+func (c *URLContentSummary) Doc() string {
 	return ""
 }
 
-func (c *UrlContentSummary) Pattern() *regexp.Regexp {
+func (c *URLContentSummary) Pattern() *regexp.Regexp {
 	return urlContentSummaryPattern
 }
 
-func (c *UrlContentSummary) Exec(ctx context.Context, event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {
+func (c *URLContentSummary) Exec(ctx context.Context, event *linebot.Event, message *linebot.TextMessage) ([]linebot.SendingMessage, error) {
 	url := urlContentSummaryPattern.FindString(message.Text)
-	summary, err := service.GetUrlContentSummary(url)
+	summary, err := service.GetURLContentSummary(url)
 	if err != nil {
 		return make([]linebot.SendingMessage, 0), xerrors.Errorf("url content summary command failed: %w", err)
 	}

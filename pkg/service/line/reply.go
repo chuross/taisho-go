@@ -16,7 +16,7 @@ var (
 		&bot_command.Itsumono{},
 		&bot_command.Weather{},
 		&bot_command.Calendar{},
-		&bot_command.UrlContentSummary{},
+		&bot_command.URLContentSummary{},
 	}
 )
 

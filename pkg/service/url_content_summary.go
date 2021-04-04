@@ -14,7 +14,22 @@ import (
 	"golang.org/x/xerrors"
 )
 
-func GetUrlContentSummary(url string) (*url_content.Summary, error) {
+var (
+	ignoreHosts = []string{
+		"twitter.com",
+		"amazon.co.jp",
+	}
+)
+
+func GetURLContentSummary(url string) (*url_content.Summary, error) {
+	for _, host := range ignoreHosts {
+		if strings.Contains(url, host) {
+			return &url_content.Summary{
+				Summaries: make([]string, 0),
+			}, nil
+		}
+	}
+
 	res, err := http.Get(url)
 	if err != nil {
 		return nil, xerrors.Errorf("content fetch error: %w", err)

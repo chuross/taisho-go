@@ -5,10 +5,10 @@ import (
 	"golang.org/x/xerrors"
 )
 
-const weatherUrl = "https://weather.yahoo.co.jp/weather/jp/raincloud/3.html"
+const weatherURL = "https://weather.yahoo.co.jp/weather/jp/raincloud/3.html"
 
 func GetWeatherImage() (*string, error) {
-	doc, err := goquery.NewDocument(weatherUrl)
+	doc, err := goquery.NewDocument(weatherURL)
 	if err != nil {
 		return nil, xerrors.Errorf("get weather node error: %w", err)
 	}
