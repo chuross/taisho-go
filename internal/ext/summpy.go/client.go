@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	google_ext "github.com/chuross/taisho/internal/app/ext/google"
+	google_ext "github.com/chuross/taisho/internal/ext/google"
 	"golang.org/x/xerrors"
 )
 

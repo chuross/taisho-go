@@ -8,7 +8,7 @@ import (
 
 	"github.com/yukihir0/gec"
 
-	"github.com/chuross/taisho/internal/app/ext/summpy.go"
+	"github.com/chuross/taisho/internal/ext/summpy.go"
 	"github.com/chuross/taisho/pkg/model/url_content"
 	"github.com/chuross/taisho/pkg/util"
 	"golang.org/x/xerrors"

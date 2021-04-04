@@ -1,8 +1,8 @@
 package apiv1
 
 import (
-	gin_ext "github.com/chuross/taisho/internal/app/ext/gin"
-	line_ext "github.com/chuross/taisho/internal/app/ext/line"
+	gin_ext "github.com/chuross/taisho/internal/ext/gin"
+	line_ext "github.com/chuross/taisho/internal/ext/line"
 	service "github.com/chuross/taisho/pkg/service/line"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/xerrors"

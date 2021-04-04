@@ -1,0 +1,7 @@
+image:
+  file: build/local/Dockerfile
+tasks:
+  - command: realize start
+ports:
+  - port: 8080
+    onOpen: open-preview

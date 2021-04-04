@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	gin_ext "github.com/chuross/taisho/internal/app/ext/gin"
-	line_ext "github.com/chuross/taisho/internal/app/ext/line"
+	gin_ext "github.com/chuross/taisho/internal/ext/gin"
+	line_ext "github.com/chuross/taisho/internal/ext/line"
 	"github.com/gin-gonic/gin"
 	"github.com/line/line-bot-sdk-go/linebot"
 	"golang.org/x/xerrors"
