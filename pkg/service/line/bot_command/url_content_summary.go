@@ -42,7 +42,6 @@ func (c *URLContentSummary) Exec(ctx context.Context, event *linebot.Event, mess
 
 	var text strings.Builder
 	text.WriteString("要約しといたよ！\n")
-	text.WriteString(url + "\n")
 	text.WriteString("--------------------\n")
 	text.WriteString(strings.Join(summary.Summaries, "\n\n"))
 
