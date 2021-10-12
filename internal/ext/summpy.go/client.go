@@ -10,14 +10,14 @@ import (
 	"strconv"
 	"strings"
 
-	google_ext "github.com/chuross/taisho/internal/ext/google"
+	"github.com/chuross/taisho/internal/ext/google"
 	"golang.org/x/xerrors"
 )
 
 func Get(text string, sentLimit int) (*SummpyResult, error) {
 	apiURL := os.Getenv("TAISHO_SUMMPY_URL")
 
-	idToken, err := google_ext.GetIdToken(apiURL)
+	idToken, err := google.GetIdToken(apiURL)
 	if err != nil {
 		return nil, xerrors.Errorf("id token get error: %w", err)
 	}

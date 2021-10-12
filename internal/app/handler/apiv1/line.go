@@ -2,14 +2,14 @@ package apiv1
 
 import (
 	gin_ext "github.com/chuross/taisho/internal/ext/gin"
-	line_ext "github.com/chuross/taisho/internal/ext/line"
+	"github.com/chuross/taisho/internal/ext/line"
 	service "github.com/chuross/taisho/pkg/service/line"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/xerrors"
 )
 
 func PostLineCallback(c *gin.Context) {
-	client, err := line_ext.NewClient()
+	client, err := line.NewClient()
 	if err != nil {
 		c.AbortWithError(500, xerrors.Errorf("line client init failed: %w", err))
 		return
