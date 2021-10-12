@@ -1,4 +1,4 @@
 image:
   file: build/local/Dockerfile
 tasks:
-  - command: realize start
+  - command: echo 'launch'
