@@ -4,7 +4,7 @@ on:
     branches:
       - master
 env:
-  IMAGE_ID: asia-northeast1-docker.pkg.dev/${{secrets.GCP_PROJECT_ID}}/taisho
+  IMAGE_ID: asia-northeast1-docker.pkg.dev/${{secrets.GCP_PROJECT_ID}}/taisho/taisho
   IMAGE_TAG: latest
   GCP_RESION: asia-northeast1
 jobs:
