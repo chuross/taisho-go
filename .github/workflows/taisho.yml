@@ -4,7 +4,7 @@ on:
     branches:
       - master
 env:
-  IMAGE_ID: asia.gcr.io/${{secrets.GCP_PROJECT_ID}}/taisho
+  IMAGE_ID: asia-northeast1-docker.pkg.dev/${{secrets.GCP_PROJECT_ID}}/taisho
   IMAGE_TAG: latest
   GCP_RESION: asia-northeast1
 jobs:
@@ -20,7 +20,7 @@ jobs:
           export_default_credentials: true
      
       - name: configure Docker Registory
-        run: gcloud auth configure-docker --quiet
+        run: gcloud auth configure-docker --quiet asia-northeast1-docker.pkg.dev
      
       - name: Build Docker image
         run: docker build --no-cache -t ${IMAGE_ID}:${IMAGE_TAG} -f build/ci/Dockerfile .
